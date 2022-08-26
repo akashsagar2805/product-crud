@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Products List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -23,6 +24,8 @@
                     <th>Description</th>
                     <th>Price</th>
                     <th>Action</th>
+                    <th>Action</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +34,16 @@
                     <td>{{$product->title}}</td>
                     <td>{{$product->description}}</td>
                     <td>{{$product->price}}</td>
+                    <td>
+                        <a href="{{url('/products/' . $product->id)}}" class="btn btn-info">View</a>
+                     </td>
+                    <td>
+                        <a href="{{url('/products/'.$product->id.'/edit')}}" class="btn btn-warning">Edit</a>
+                    </td>
+                    <td>
+                        <a href="{{url('/products/' . $product->id)}}" class="btn btn-danger">Delete</a>
+                    </td>
+
                 </tr>
                 @endforeach
 

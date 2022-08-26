@@ -38,20 +38,19 @@ class ProductController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'description' => ['required','max:255'],
+            'description' => ['required'],
             'price' => 'required'
 
         ]);
 
-       $product = new Product();
-       $product->title = $request->title;
-       $product->description = $request->description;
-       $product->price = $request->price;
+        $product = new Product();
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
 
-       $product->save();
+        $product->save();
 
-       return redirect('/products');
-
+        return redirect('/products');
     }
 
     /**
@@ -62,7 +61,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -73,7 +74,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -85,7 +88,22 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => ['required'],
+            'price' => 'required'
+        ]);
+
+        $product = Product::find($id);
+
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+
+        $product->save();
+        return redirect('/products');
+
+
     }
 
     /**
