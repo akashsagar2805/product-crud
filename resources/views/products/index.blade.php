@@ -14,7 +14,7 @@
     <div class="card-body m-4">
         <h1 class="">
             Products List
-            <a href="/products/add" class="btn btn-success">Add Product</a>
+            <a href="/products/create" class="btn btn-success">Add Product</a>
         </h1>
 
         <table class="table table-striped mt-4 text-justify">
@@ -24,8 +24,7 @@
                     <th>Description</th>
                     <th>Price</th>
                     <th>Action</th>
-                    <th>Action</th>
-                    <th>Action</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -34,15 +33,16 @@
                     <td>{{$product->title}}</td>
                     <td>{{$product->description}}</td>
                     <td>{{$product->price}}</td>
-                    <td>
-                        <a href="{{url('/products/' . $product->id)}}" class="btn btn-info">View</a>
+                    <td >
+                        <a href="{{url('/products/' . $product->id)}}" class="btn btn-info me-2">View</a>
+                        <a href="{{url('/products/'.$product->id.'/edit')}}" class="btn btn-warning me-2">Edit</a>
+                        <form action="{{url('/products/' . $product->id)}}" method="post" style="display: inline" onclick="return confirm('Are you sure you want to delete this item?');">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                      </td>
-                    <td>
-                        <a href="{{url('/products/'.$product->id.'/edit')}}" class="btn btn-warning">Edit</a>
-                    </td>
-                    <td>
-                        <a href="{{url('/products/' . $product->id)}}" class="btn btn-danger">Delete</a>
-                    </td>
+
 
                 </tr>
                 @endforeach

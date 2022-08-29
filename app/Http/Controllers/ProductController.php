@@ -56,12 +56,12 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = Product::find($id);
+        //$product = Product::find($id);
 
         return view('products.show', compact('product'));
     }
@@ -69,12 +69,12 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        $product = Product::find($id);
+        //$product = Product::find($id);
 
         return view('products.edit', compact('product'));
     }
@@ -83,10 +83,10 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
         $request->validate([
             'title' => 'required',
@@ -94,7 +94,7 @@ class ProductController extends Controller
             'price' => 'required'
         ]);
 
-        $product = Product::find($id);
+        //$product = Product::find($id);
 
         $product->title = $request->title;
         $product->description = $request->description;
@@ -109,11 +109,15 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        //$product = Product::find($id);
+
+        $product->delete();
+
+        return redirect('/products');
     }
 }
